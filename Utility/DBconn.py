@@ -1,6 +1,6 @@
 import pyodbc
 from Utility.DBPropertyUtil import PropertyUtil
-
+#Db connection
 
 class DBconnection:
     def __init__(self):

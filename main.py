@@ -2,7 +2,7 @@ import pyodbc
 from datetime import date
 from tabulate import tabulate
 from DAO import CustomerService,OrderService,CartService,ProductService
-
+#main class
 class EcomApp:
     def main():
         customer_access=CustomerService()
@@ -14,8 +14,8 @@ class EcomApp:
             print("""
                 Choose 
                 1. Register Customer. 
-                2. Create Product. 
-                3. Delete Product. 
+                2. Create new  Product. 
+                3. Delete new Product. 
                 4. Add to cart. 
                 5. View cart. 
                 6. Place order. 
