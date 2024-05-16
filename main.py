@@ -73,7 +73,7 @@ class EcomApp:
                 order_access.close()
                 product_access.close()
                 customer_access.close()
-                print("Thank you for using our service🙏")
+                print("Thank you for visiting our service🙏")
                 break
             else:
                 print("Wrong choice ❌")
