@@ -2,7 +2,7 @@ from tabulate import tabulate
 from datetime import date
 from MyException.customer_exception import CustomerNotFoundException
 from Utility.DBconn import DBconnection
-from Interface import IOrderService
+from Interface.order_interface import IOrderService
 
 class OrderService(DBconnection,IOrderService):
 

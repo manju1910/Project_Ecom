@@ -1,6 +1,6 @@
 from tabulate import tabulate
 from Utility.DBconn import DBconnection
-from Interface import ICartService
+from Interface.cart_interface import ICartService
 class CartService(DBconnection,ICartService):
 
     def display_cart(self):

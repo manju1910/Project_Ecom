@@ -1,7 +1,7 @@
 from tabulate import tabulate
 from MyException.product_exception import ProductNotFoundException
 from Utility.DBconn import DBconnection
-from Interface import IProductService
+from Interface.product_interface import IProductService
 class ProductService(DBconnection,IProductService):
 
     def display_product(self):

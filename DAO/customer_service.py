@@ -1,7 +1,7 @@
 from tabulate import tabulate
 from MyException.customer_exception import CustomerNotFoundException
 from Utility.DBconn import DBconnection
-from Interface import ICustomerService
+from Interface.customer_interface import ICustomerService
 
 class CustomerService(DBconnection,ICustomerService):
 
