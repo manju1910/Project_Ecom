@@ -1,6 +1,7 @@
 from tabulate import tabulate
 from Utility.DBconn import DBconnection
-class CartService(DBconnection):
+from Interface import ICartService
+class CartService(DBconnection,ICartService):
 
     def display_cart(self):
         try:
@@ -25,6 +26,8 @@ class CartService(DBconnection):
             (customer_id,prod_id,quantity)
             )
             self.conn.commit()
+            print(f"Product with product ID {prod_id} has been added to your cart.........")
+            return True
         except Exception as e:
            print(e)
     

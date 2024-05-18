@@ -1,22 +1,7 @@
 from tabulate import tabulate
 from MyException.product_exception import ProductNotFoundException
 from Utility.DBconn import DBconnection
-from abc import ABC,abstractmethod
-
-class IProductService(ABC):
-    
-    @abstractmethod
-    def display_product(self):
-        pass
-
-    @abstractmethod
-    def createProduct(self,name,price,description,stock_quantity):
-        pass
-
-    @abstractmethod
-    def delete_product(self,product_id):
-        pass
-
+from Interface import IProductService
 class ProductService(DBconnection,IProductService):
 
     def display_product(self):
@@ -25,8 +10,10 @@ class ProductService(DBconnection,IProductService):
            product = self.cursor.fetchall() # Get all data
            headers = [column [0] for column in self.cursor.description]
            print(tabulate (product, headers=headers, tablefmt="psql"))
+           return product
         except Exception as e:
            print(e)
+           return None
   
          
 
@@ -35,26 +22,42 @@ class ProductService(DBconnection,IProductService):
            self.cursor.execute( "insert into Product ( name, price, description, stock_quantity) values(?,?,?,?)",
                        (name,price,description,stock_quantity))
            self.conn.commit()
+           print("Product created successfully.........")
+           return True
     
         except Exception as e:
            print(e)
       
 
     def delete_product(self,product_id):
-        
-            rows_deleted = self.cursor.execute("""
-            delete from Order_items where product_id=?
-            delete from Cart_items where product_id=?
-            delete from Product where product_id=?
-            """,
-            (product_id,product_id,product_id)
-            ).rowcount
-            self.conn.commit()
-
-            try:    
-                if rows_deleted == 0:
-                        raise ProductNotFoundException(product_id)
-                
-            except ProductNotFoundException as e:
-                print(e)
+         
+        rows_deleted = self.cursor.execute("""
+        delete from Order_items where product_id=?
+        delete from Cart_items where product_id=?
+        delete from Product where product_id=?
+        """,
+        (product_id,product_id,product_id)
+        ).rowcount
+        self.conn.commit()
+        try:
+            if rows_deleted == 0:
+                    raise ProductNotFoundException(product_id)
+            
+        except ProductNotFoundException as e:
+            print(e)
        
+
+    def check_productid(self,product_id):
+        self.cursor.execute("""
+        select product_id from Product
+        where product_id= ? """,(product_id)
+        )
+        row=self.cursor.fetchall()
+        product_list = [ro[0] for ro in row]
+        try:
+            if len(product_list)==0:
+                raise ProductNotFoundException(product_id)
+        except ProductNotFoundException as e:
+            print(e)
+        finally:
+            return len(product_list)
