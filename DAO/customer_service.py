@@ -5,7 +5,7 @@ from Interface.customer_interface import ICustomerService
 
 class CustomerService(DBconnection,ICustomerService):
 
-    def display_customer(self):
+    def Display_customer(self):
         try:
             self.cursor.execute("Select * from Customer")
             cust = self.cursor.fetchall() # Get all data
@@ -15,7 +15,7 @@ class CustomerService(DBconnection,ICustomerService):
             print(e)
 
 
-    def create_customer(self,customer_name,customer_email,customer_password):
+    def Create_customer(self,customer_name,customer_email,customer_password):
         try:
             self.cursor.execute(
                 """INSERT INTO customer (name, email, password) VALUES ( ?, ?, ?)
@@ -31,7 +31,7 @@ class CustomerService(DBconnection,ICustomerService):
   
             
 
-    def delete_customer(self,customer_id):
+    def Delete_customer(self,customer_id):
         rows_deleted = self.cursor.execute(
             """declare @a int = ?;
                     delete from Order_items
@@ -62,7 +62,7 @@ class CustomerService(DBconnection,ICustomerService):
             print(e)
 
 
-    def check_customerid(self,customer_id):
+    def Check_customerid(self,customer_id):
         self.cursor.execute("""
         select customer_id from Customer
         where customer_id= ? """,(customer_id)

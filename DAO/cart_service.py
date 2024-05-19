@@ -3,7 +3,7 @@ from Utility.DBconn import DBconnection
 from Interface.cart_interface import ICartService
 class CartService(DBconnection,ICartService):
 
-    def display_cart(self):
+    def Display_cart(self):
         try:
             self.cursor.execute("Select * from Cart_items")
             cart = self.cursor.fetchall() 
@@ -13,7 +13,7 @@ class CartService(DBconnection,ICartService):
            print(e)
        
 
-    def add_to_cart(self,customer_id,prod_id,quantity):
+    def Add_to_cart(self,customer_id,prod_id,quantity):
         try:
             self.cursor.execute(
             """
@@ -32,7 +32,7 @@ class CartService(DBconnection,ICartService):
            print(e)
     
  
-    def remove_from_cart(self,customer_id,prod_id):
+    def Remove_from_cart(self,customer_id,prod_id):
         try:
             self.cursor.execute(
             """
@@ -50,7 +50,7 @@ class CartService(DBconnection,ICartService):
            print(e)
 
 
-    def getAllFromCart(self,customer_id):
+    def GetAllFromCart(self,customer_id):
         try:
             self.cursor.execute(
             """

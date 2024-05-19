@@ -6,7 +6,7 @@ from Interface.order_interface import IOrderService
 
 class OrderService(DBconnection,IOrderService):
 
-    def placeOrder(self,customer_id, pq_list, shippingAddress):
+    def PlaceOrder(self,customer_id, pq_list, shippingAddress):
         try:
             today_date=str(date.today())
             self.cursor.execute(
@@ -43,7 +43,7 @@ class OrderService(DBconnection,IOrderService):
         except Exception as e:
             print(e)  
 
-    def placeorder_alternative(self, customer_id, shippingAddress):
+    def Placeorder_alternative(self, customer_id, shippingAddress):
         try:
             today_date=str(date.today())
             self.cursor.execute(
@@ -83,7 +83,7 @@ class OrderService(DBconnection,IOrderService):
             print(e) 
 
 
-    def seventhquestion(self, customer_id):
+    def Seventhquestion(self, customer_id):
         try:
             self.cursor.execute(
                 """
@@ -103,7 +103,7 @@ class OrderService(DBconnection,IOrderService):
             print(e) 
      
 
-    def getOrdersByCustomer(self, customer_id):
+    def GetOrdersByCustomer(self, customer_id):
         try:
             self.cursor.execute("""
             select order_id from orders
