@@ -2,7 +2,7 @@ class PropertyUtil:
 
     @staticmethod
     def get_property_string():
-        server_name = "DESKTOP-0EUUQEO\\SQLEXPRESS"
+        server_name = "Ahilesh-PC\\SQLEXPRESS"
         database_name = "Ecom_application"
         
         
